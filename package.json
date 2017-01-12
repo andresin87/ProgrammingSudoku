@@ -1,0 +1,25 @@
+{
+  "name": "programming_sudoku",
+  "version": "0.0.1",
+  "description": "ES6 + D3 approach of Programming Sudoku Wei-Meng Lee Ebook (2006)",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andresin87/ProgrammingSudoku.git"
+  },
+  "keywords": [
+    "sudoku",
+    "ES6",
+    "D3",
+    "Javascript"
+  ],
+  "author": "@andresin87",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/andresin87/ProgrammingSudoku/issues"
+  },
+  "homepage": "https://github.com/andresin87/ProgrammingSudoku#readme"
+}
