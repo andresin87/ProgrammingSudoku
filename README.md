@@ -8,3 +8,4 @@ This project starts with the propose to create a sudoku like the **Wei-Meng Lee*
 * Redux
 * Webpack
 * Babel
+* D3.js
