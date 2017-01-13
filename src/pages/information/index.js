@@ -33,11 +33,85 @@ class Information extends Component {
 
 
   render() {
-    let styles = this.getStyles()
+    let styles = this.getStyles();
 
     return (
       <div style={styles.root}>
         <h2>Information</h2>
+        <div id="contact">
+          <div
+            style={{
+              width: '20%',
+              textAlign: 'right',
+              float: 'left',
+              padding: '0 0px'
+            }}
+          >
+            Name:
+          </div>
+          <div
+            style={{
+              width: '80%',
+              float: 'left'
+            }}
+          >
+            <strong>Andrés Lucas Enciso</strong>
+          </div>
+          <div
+            style={{
+              width: '20%',
+              textAlign: 'right',
+              float: 'left',
+              padding: '0 0px'
+            }}
+          >
+            Phone:
+          </div>
+          <div
+            style={{
+              width: '80%',
+              float: 'left'
+            }}
+          >
+            <strong>+34 644.44.87.61</strong>
+          </div>
+          <div
+            style={{
+              width: '20%',
+              textAlign: 'right',
+              float: 'left',
+              padding: '0 0px'
+            }}
+          >
+            Address:
+          </div>
+          <div
+            style={{
+              width: '80%',
+              float: 'left'
+            }}
+          >
+            <strong>C/ Numancia 61<br/>6º 1ª</strong>
+          </div>
+          <div
+            style={{
+              width: '20%',
+              textAlign: 'right',
+              float: 'left',
+              padding: '0 0px'
+            }}
+          >
+            Web:
+          </div>
+          <div
+            style={{
+              width: '80%',
+              float: 'left'
+            }}
+          >
+            <strong><a href="www.andreslucas.me">www.andreslucas.me</a></strong>
+          </div>
+        </div>
       </div>
     );
   }
