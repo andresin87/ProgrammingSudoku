@@ -109,7 +109,7 @@ class Information extends Component {
               float: 'left'
             }}
           >
-            <strong><a href="www.andreslucas.me">www.andreslucas.me</a></strong>
+            <strong><a href="http://www.andreslucas.me" target="_blank">www.andreslucas.me</a></strong>
           </div>
         </div>
       </div>
