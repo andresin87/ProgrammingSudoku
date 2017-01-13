@@ -48,22 +48,26 @@ class PdfViewer extends React.Component {
     );
   }
 
-  render() {
-    let pagination = null;
-    console.log(this);
-    let pdf;
-    if (this.state && this.state.pages) {
-      pagination = this.renderPagination(this.state.page, this.state.pages);
-      pdf = <PDF
+  componentDidUpdate() {
+    this.PDF = this.state.page ? (
+      <PDF
         file={this.props.file}
         onDocumentComplete={this.onDocumentComplete}
         onPageComplete={this.onPageComplete}
         page={this.state.page}
       />
+    ) : null;
+  }
+
+  render() {
+    let pagination = null;
+    console.log(this);
+    if (this.state && this.state.pages) {
+      pagination = this.renderPagination(this.state.page, this.state.pages);
     }
     return (
       <div>
-        {pdf}
+        {this.PDF}
         {pagination}
       </div>
     );

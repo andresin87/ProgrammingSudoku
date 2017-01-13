@@ -68,7 +68,7 @@ module.exports = {
     new webpack.DefinePlugin({
       'process.env': {
         'NODE_ENV': JSON.stringify('development'),
-        'appbar_title': JSON.stringify('React-Redux Starter'),
+        'appbar_title': JSON.stringify('Programming Sudoku'),
       },
       '__DEVTOOLS__': true
     }),

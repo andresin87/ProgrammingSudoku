@@ -11,6 +11,7 @@ import Application from './components/Application';
 import Home from './pages/home'
 import Sudoku from './pages/sudoku/index'
 import Information from './pages/information/index'
+import Documentation from './pages/documentation/index'
 
 const AppRoutes = (
   <Route path="/" component={Application}>
@@ -20,6 +21,9 @@ const AppRoutes = (
     </Route>*/}
     <Route path="sudoku">
       <IndexRoute component={Sudoku}/>
+    </Route>
+    <Route path="documentation">
+      <IndexRoute component={Documentation}/>
     </Route>
     <Route path="info">
       <IndexRoute component={Information}/>

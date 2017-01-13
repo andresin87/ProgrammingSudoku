@@ -84,6 +84,9 @@ class Sidebar extends Component {
       location
     } = this.props;
 
+    console.log(location.pathname);
+    console.log('dfkjsghdflgks');
+
     return (
       <LeftNav open={true} style={this.getStyles().leftNav} >
         <SelectableList
@@ -92,7 +95,8 @@ class Sidebar extends Component {
           <div style={this.getStyles().menuSubHeader}>Menu</div>
           {/**<ListItem primaryText="Home" value="/home"/>*/}
           <ListItem primaryText="Sudoku" value="/sudoku"/>
-          <ListItem primaryText="Information" value="/info"/>
+          <ListItem primaryText="Documentation" value="documentation"/>
+          <ListItem primaryText="Information" value="info"/>
         </SelectableList>
       </LeftNav>
     );

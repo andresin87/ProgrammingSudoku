@@ -6,7 +6,7 @@ import thunkMiddleware from 'redux-thunk';
 import AppRoutes from './app-routes';
 import AppRouter from './AppRouter';
 import injectTapEventPlugin from 'react-tap-event-plugin';
-import { createStore, combineReducers, applyMiddleware } from 'redux';
+import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import { Provider } from 'react-redux';
 import { logger, callAPIMiddleware } from './middleware/api';
 import { reducers } from './reducers/index';
@@ -27,12 +27,14 @@ export const history = process.env.NODE_ENV === 'production' ?
 
 const reducer = combineReducers(reducers);
 
-const createStoreWithMiddleware = applyMiddleware(
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const createStoreWithMiddleware = composeEnhancers(applyMiddleware(
   thunkMiddleware, // lets us dispatch() functions
   callAPIMiddleware
-)(createStore);
+))(createStore);
 
-export const store = createStoreWithMiddleware(reducer); 
+export const store = createStoreWithMiddleware(reducer);
 
 ReactDOM.render(
 	<Provider store={store}>
