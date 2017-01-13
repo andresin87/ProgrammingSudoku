@@ -16,6 +16,7 @@
   "dependencies": {
     "material-ui": "^0.14.3",
     "normalizr": "^2.0.0",
+    "pdfjs-dist-viewer-min": "^1.6.210",
     "react": "^0.14.6",
     "react-dom": "^0.14.6",
     "react-pdf-js": "^1.0.32",

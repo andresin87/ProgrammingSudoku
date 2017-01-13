@@ -84,9 +84,6 @@ class Sidebar extends Component {
       location
     } = this.props;
 
-    console.log(location.pathname);
-    console.log('dfkjsghdflgks');
-
     return (
       <LeftNav open={true} style={this.getStyles().leftNav} >
         <SelectableList
