@@ -1,10 +1,12 @@
 /**
  * Created by alucas on 14/1/17.
  */
+/**
+ * Created by alucas on 14/1/17.
+ */
 import React, { Component, PropTypes } from 'react';
-import ActivityBoard from './ActivityBoard';
 
-export default class MainBoard extends Component {
+export default class ActivityBoard extends Component {
 
   static propTypes = {
     height: React.PropTypes.number,
@@ -14,8 +16,11 @@ export default class MainBoard extends Component {
   getStyles() {
     return {
       root: {
-        height: (this.props.height- 20 - 64 - 64 - 28),
-        border: '1px solid rgb(200,200,200)'
+        height: this.props.height,
+        margin: 20,
+        border: '1px solid rgb(200,200,200)',
+        width: 200,
+        float: 'right'
       }
     }
   }
@@ -32,9 +37,7 @@ export default class MainBoard extends Component {
 
     return (
       <div style={styles.root}>
-        <ActivityBoard
-          height={(this.props.height- 20 - 64 - 64 - 28) - 40}
-        />
+
       </div>
     );
   }
