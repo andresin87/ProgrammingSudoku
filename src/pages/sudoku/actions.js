@@ -10,20 +10,22 @@ export function start(uuid) {
     let { NEW_GAME } = types;
     let r;
     let uuid = uuidV4();
-    uuid = '2fe289f3-6ecc-4082-944d-aaad3e401079';
     let newGamePromise = () => database.child('games').child(uuid).once('value').then(function(snapshot) {
       r = snapshot.val();
-      console.log(uuid);
       if (r === null) {
-        console.log('NOT exists', r);
-        return dispatch({
-          'sudoku': {
+        let sudoku = {
+          sudoku: {
             uuid: uuid,
-          },
+          }
+        };
+        database.child(`games/${uuid}`).set({
+          ...(sudoku.sudoku)
+        });
+        return dispatch({
+          ...sudoku,
           type: NEW_GAME
         });
       } else {
-        console.log('exists', r);
         uuid = uuidV4();
         newGamePromise();
       }
