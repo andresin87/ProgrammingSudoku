@@ -1,5 +1,6 @@
 import * as types from '../constants/actionTypes';
 import { combineReducers } from 'redux';
+import { omit } from 'lodash';
 
 const initialState = {
   home: {
@@ -29,11 +30,15 @@ function createReducer(initialState, handlers) {
 //   }
 // });
 
-export const sudoku = createReducer(initialState.sudoku, {
-  [types.NEW_GAME](state, action) {
-    console.log(state);
-    return {
-      ...state,
+export const sudoku = createReducer(
+  initialState.sudoku,
+  {
+    [types.NEW_GAME](state, action) {
+      console.log(state, action, omit(action, ['type']));
+      return {
+        ///...omit(action, ['type']),
+        ...action.sudoku
+      }
     }
   }
-});
+);

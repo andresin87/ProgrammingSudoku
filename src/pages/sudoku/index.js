@@ -5,9 +5,9 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import mui from 'material-ui'
 import RaisedButton from 'material-ui/lib/raised-button';
-import * as homeActions from '../../actions/homeActions';
+import * as actions from './actions';
 import MainBoard from './MainBoard';
-import uuid from 'uuid/v4'
+import uuid from 'uuid/v4';
 
 import { Link } from 'react-router';
 
@@ -56,7 +56,6 @@ class Sudoku extends Component {
 
   componentDidMount() {
     window.addEventListener('resize', this.handleResize.bind(this));
-    this.setState({uuid: this.props.uuid});
   }
 
   componentWillUnmount() {
@@ -66,8 +65,7 @@ class Sudoku extends Component {
 
   render() {
     let styles = this.getStyles();
-    console.log(this);
-    if (this.state.uuid) {
+    if (this.props.uuid) {
       return (
         <div style={styles.root}>
           <h2>Sudoku</h2>
@@ -85,8 +83,8 @@ class Sudoku extends Component {
             <RaisedButton
               onClick={() => {
                 const id = uuid();
-                console.log(id);
-                this.setState({uuid: id});
+                this.props.dispatch(actions.start(id));
+                // this.setState({uuid: id});
               }}
               style={styles.raisedButtons}>NEW GAME
             </RaisedButton>
