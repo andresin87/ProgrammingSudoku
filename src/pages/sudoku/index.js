@@ -7,7 +7,6 @@ import mui from 'material-ui'
 import RaisedButton from 'material-ui/lib/raised-button';
 import * as actions from './actions';
 import MainBoard from './MainBoard';
-import uuid from 'uuid/v4';
 
 import { Link } from 'react-router';
 
@@ -82,8 +81,7 @@ class Sudoku extends Component {
           <div>
             <RaisedButton
               onClick={() => {
-                const id = uuid();
-                this.props.dispatch(actions.start(id));
+                this.props.dispatch(actions.start());
                 // this.setState({uuid: id});
               }}
               style={styles.raisedButtons}>NEW GAME

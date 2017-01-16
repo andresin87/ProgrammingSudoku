@@ -14,6 +14,7 @@
   "author": "@andresin87",
   "license": "MIT",
   "dependencies": {
+    "firebase": "^3.6.5",
     "material-ui": "^0.14.3",
     "normalizr": "^2.0.0",
     "pdfjs-dist-viewer-min": "^1.6.210",
