@@ -4,6 +4,9 @@ import { combineReducers } from 'redux';
 const initialState = {
   home: {
     feed: {}
+  },
+  sudoku: {
+    uuid: null
   }
 };
 
@@ -17,11 +20,20 @@ function createReducer(initialState, handlers) {
   }
 }
 
-export const home = createReducer(initialState.home, {
-  [types.ALBUMS_SUCCESS](state, action) {
+// export const home = createReducer(initialState.home, {
+//   [types.ALBUMS_SUCCESS](state, action) {
+//     return {
+//       ...state,
+//       feed: action.response.responseBody.feed
+//     }
+//   }
+// });
+
+export const sudoku = createReducer(initialState.sudoku, {
+  [types.NEW_GAME](state, action) {
+    console.log(state);
     return {
       ...state,
-      feed: action.response.responseBody.feed
     }
   }
-})
+});

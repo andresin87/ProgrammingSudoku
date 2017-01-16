@@ -4,8 +4,10 @@
 import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import mui from 'material-ui'
+import RaisedButton from 'material-ui/lib/raised-button';
 import * as homeActions from '../../actions/homeActions';
-import MainBoard from './MainBoard'
+import MainBoard from './MainBoard';
+import uuid from 'uuid/v4'
 
 import { Link } from 'react-router';
 
@@ -13,6 +15,7 @@ class Sudoku extends Component {
 
   static propTypes = {
     location: React.PropTypes.object.isRequired,
+    uuid: React.PropTypes.string,
   };
 
   static contextTypes = {
@@ -23,6 +26,10 @@ class Sudoku extends Component {
     return {
       root: {
         paddingTop: 64
+      },
+      raisedButtons: {
+        padding: '0 20px',
+        margin: '10px'
       }
     }
   }
@@ -36,7 +43,7 @@ class Sudoku extends Component {
 
     this.state = {
       windowHeight: window.innerHeight,
-      windowWidth: window.innerWidth
+      windowWidth: window.innerWidth,
     };
   }
 
@@ -49,6 +56,7 @@ class Sudoku extends Component {
 
   componentDidMount() {
     window.addEventListener('resize', this.handleResize.bind(this));
+    this.setState({uuid: this.props.uuid});
   }
 
   componentWillUnmount() {
@@ -58,21 +66,42 @@ class Sudoku extends Component {
 
   render() {
     let styles = this.getStyles();
-
-    return (
-      <div style={styles.root}>
-        <h2>Sudoku</h2>
-        <MainBoard
-          height={this.state.windowHeight}
-          width={this.state.windowWidth}
-        />
-      </div>
-    );
+    console.log(this);
+    if (this.state.uuid) {
+      return (
+        <div style={styles.root}>
+          <h2>Sudoku</h2>
+          <MainBoard
+            height={this.state.windowHeight}
+            width={this.state.windowWidth}
+          />
+        </div>
+      );
+    } else {
+      return (
+        <div style={styles.root}>
+          <h2>Sudoku</h2>
+          <div>
+            <RaisedButton
+              onClick={() => {
+                const id = uuid();
+                console.log(id);
+                this.setState({uuid: id});
+              }}
+              style={styles.raisedButtons}>NEW GAME
+            </RaisedButton>
+            <RaisedButton style={styles.raisedButtons}>LOAD GAME</RaisedButton>
+          </div>
+        </div>
+      );
+    }
   }
 }
 
 function mapStateToProps(state) {
-  return {};
+  return {
+    uuid: state.sudoku.uuid
+  };
 }
 
 export default connect(

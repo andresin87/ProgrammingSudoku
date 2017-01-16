@@ -4,12 +4,12 @@ import 'isomorphic-fetch'
 
 // Extracts the next page URL from Github API response.
 function getNextPageUrl(response) {
-  const link = response.headers.get('link')
+  const link = response.headers.get('link');
   if (!link) {
     return null
   }
 
-  const nextLink = link.split(',').find(s => s.indexOf('rel="next"') > -1)
+  const nextLink = link.split(',').find(s => s.indexOf('rel="next"') > -1);
   if (!nextLink) {
     return null
   }
@@ -17,24 +17,24 @@ function getNextPageUrl(response) {
   return nextLink.split(';')[0].slice(1, -1)
 }
 
-const API_ROOT = 'https://itunes.apple.com'
+const API_ROOT = 'https://itunes.apple.com';
 
 // Fetches an API response and normalizes the result JSON according to schema.
 // This makes every API response have the same shape, regardless of how nested it was.
 function callApi(endpoint, schema) {
-  const fullUrl = (endpoint.indexOf(API_ROOT) === -1) ? API_ROOT + endpoint : endpoint
+  const fullUrl = (endpoint.indexOf(API_ROOT) === -1) ? API_ROOT + endpoint : endpoint;
 
   return fetch(fullUrl)
     .then(response =>
       response.json().then(json => ({ json, response }))
     ).then(({ json, response }) => {
       if (!response.ok) {
-        return Promise.reject(json)
+        return Promise.reject(json);
       }
 
       return {
         responseBody: json
-      }
+      };
 
       // const camelizedJson = camelizeKeys(json)
       // const nextPageUrl = getNextPageUrl(response)
@@ -56,15 +56,15 @@ function callApi(endpoint, schema) {
 
 const userSchema = new Schema('users', {
   idAttribute: 'login'
-})
+});
 
 const repoSchema = new Schema('repos', {
   idAttribute: 'fullName'
-})
+});
 
 repoSchema.define({
   owner: userSchema
-})
+});
 
 // Schemas for Github API responses.
 export const Schemas = {
@@ -72,21 +72,21 @@ export const Schemas = {
   USER_ARRAY: arrayOf(userSchema),
   REPO: repoSchema,
   REPO_ARRAY: arrayOf(repoSchema)
-}
+};
 
 // Action key that carries API call info interpreted by this Redux middleware.
-export const CALL_API = Symbol('Call API')
+export const CALL_API = Symbol('Call API');
 
 // A Redux middleware that interprets actions with CALL_API info specified.
 // Performs the call and promises when such actions are dispatched.
 export const callAPIMiddleware = store => next => action => {
-  const callAPI = action[CALL_API]
+  const callAPI = action[CALL_API];
   if (typeof callAPI === 'undefined') {
     return next(action)
   }
 
-  let { endpoint } = callAPI
-  const { schema, types } = callAPI
+  let { endpoint } = callAPI;
+  const { schema, types } = callAPI;
 
   if (typeof endpoint === 'function') {
     endpoint = endpoint(store.getState())
@@ -106,13 +106,13 @@ export const callAPIMiddleware = store => next => action => {
   }
 
   function actionWith(data) {
-    const finalAction = Object.assign({}, action, data)
-    delete finalAction[CALL_API]
+    const finalAction = Object.assign({}, action, data);
+    delete finalAction[CALL_API];
     return finalAction
   }
 
-  const [ requestType, successType, failureType ] = types
-  next(actionWith({ type: requestType }))
+  const [ requestType, successType, failureType ] = types;
+  next(actionWith({ type: requestType }));
 
   return callApi(endpoint, schema).then(
     response => next(actionWith({
@@ -124,4 +124,4 @@ export const callAPIMiddleware = store => next => action => {
       error: error.message || 'Something bad happened'
     }))
   )
-}
+};
