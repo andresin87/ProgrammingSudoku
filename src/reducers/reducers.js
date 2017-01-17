@@ -42,6 +42,13 @@ export const sudoku = createReducer(
         ///...omit(action, ['type']),
         ...action.sudoku
       }
+    },
+    [types.LOAD_GAME](state, action) {
+      console.log(state, action, omit(action, ['type']));
+      return {
+        ///...omit(action, ['type']),
+        ...action.sudoku
+      }
     }
   }
 );

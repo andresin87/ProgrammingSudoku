@@ -5,7 +5,7 @@ import * as types from '../../constants/actionTypes';
 import database from '../../helpers/firebase';
 import uuidV4 from 'uuid/v4';
 
-export function start(uuid) {
+export function start() {
   return (dispatch, getState) => {
     let state = getState();
     let stack = [];
@@ -41,8 +41,31 @@ export function start(uuid) {
   }
 }
 
-export function load(login, requiredFields = []) {
+export function load(uuid) {
   return (dispatch, getState) => {
-    return dispatch(fetchTopalbums())
+    let state = getState();
+    let { LOAD_GAME } = types;
+    let r;
+    console.log('here');
+    let loadGamePromise = () => database.child('games').child(uuid).once('value').then(function(snapshot) {
+      r = snapshot.val();
+      if (r === null) {
+        // ERROR
+        console.log('LOAD_GAME_ERROR');
+      } else {
+        let sudoku = {
+          sudoku: {
+            ...r,
+            stack: state.sudoku.stack.push(...(r.stack))
+          }
+        };
+        console.log(r);
+        return dispatch({
+          ...sudoku,
+          type: LOAD_GAME
+        });
+      }
+    });
+    loadGamePromise();
   }
 }

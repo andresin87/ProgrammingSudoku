@@ -5,6 +5,7 @@ import React, { Component, PropTypes } from 'react';
 import { connect } from 'react-redux';
 import mui from 'material-ui'
 import RaisedButton from 'material-ui/lib/raised-button';
+import TextField from 'material-ui/lib/text-field';
 import * as actions from './actions';
 import MainBoard from './MainBoard';
 
@@ -86,7 +87,24 @@ class Sudoku extends Component {
               }}
               style={styles.raisedButtons}>NEW GAME
             </RaisedButton>
-            <RaisedButton style={styles.raisedButtons}>LOAD GAME</RaisedButton>
+            <TextField
+              hintText="game uuid"
+              onChange={(v) => {
+                console.log(this.loadtTextfield.getValue());
+              }}
+              id="loadTextfield"
+              ref={(c) => { this.loadtTextfield = c; }}
+            />
+            <RaisedButton
+              onClick={() => {
+                console.log(this.loadtTextfield.getValue());
+                this.props.dispatch(actions.load(this.loadtTextfield.getValue()));
+                // this.setState({uuid: id});
+              }}
+              style={styles.raisedButtons}
+            >
+              LOAD GAME
+            </RaisedButton>
           </div>
         </div>
       );
