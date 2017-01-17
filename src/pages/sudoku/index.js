@@ -96,7 +96,8 @@ class Sudoku extends Component {
 
 function mapStateToProps(state) {
   return {
-    uuid: state.sudoku.uuid
+    uuid: state.sudoku.uuid,
+    stack: state.sudoku.stack
   };
 }
 

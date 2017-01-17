@@ -1,13 +1,16 @@
 import * as types from '../constants/actionTypes';
 import { combineReducers } from 'redux';
 import { omit } from 'lodash';
+// import { modStack } from '../helpers/Stack';
+import Immutable from 'immutable';
 
 const initialState = {
   home: {
     feed: {}
   },
   sudoku: {
-    uuid: null
+    uuid: null,
+    stack: new Immutable.Stack()
   }
 };
 
