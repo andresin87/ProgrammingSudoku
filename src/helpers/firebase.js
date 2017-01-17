@@ -9,8 +9,6 @@ firebase.initializeApp(config);
 
 let database = firebase.database().ref();
 
-console.log(firebase, database);
-
 // database.on('value', snapshot => {
 //   console.log(snapshot.val());
 // });
