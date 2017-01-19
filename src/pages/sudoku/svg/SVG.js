@@ -2,6 +2,7 @@
  * Created by alucas on 14/1/17.
  */
 import React, { Component, PropTypes } from 'react';
+import Cell from './Cell';
 
 export default class SudokuBoard extends Component {
 
@@ -76,6 +77,27 @@ export default class SudokuBoard extends Component {
     };
     SqrGridLines(9);
 
+    const getCells = (() => {
+      console.log('getCells');
+      const r = [];
+      for(let y = 0; y<9; y++) {
+        for (let x = 0; x < 9; x++) {
+          // console.log(x,y, '--->', x * this.props.width / Math.sqrt(9), y * this.props.height / Math.sqrt(9), this.props.width/9, this.props.height/9);
+          r.push(
+            <Cell
+              id={`cell-x${x}y${y}`}
+              key={`cell-x${x}y${y}`}
+              x={(x * this.props.width / 9) + 4}
+              y={(y * this.props.height / 9) + 4}
+              width={(this.props.width/9) - 8}
+              height={(this.props.height/9) -8}
+            />
+          )
+        }
+      }
+      return r;
+    });
+
     return (
       <svg style={styles.root}>
         <rect
@@ -84,6 +106,7 @@ export default class SudokuBoard extends Component {
         <g id="rows">{Rows}</g>
         <g id="cols">{Cols}</g>
         <g id="sqrs">{Sqrs}</g>
+        <g id="cells">{getCells()}</g>
       </svg>
     );
   }
